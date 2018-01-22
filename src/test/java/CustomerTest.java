@@ -23,16 +23,6 @@ public class CustomerTest {
     }
 
     @Test
-    public void testPrintingStatementFooterWithOneMovie() throws Exception {
-        customer.rentMovie(pulpFiction, 1);
-
-        String actual = customer.printStatementFooter();
-        String expected = "Gesamt: 2,00\n";
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void testRentingThreeMovies() throws Exception {
         customer.rentMovie(pulpFiction, 1);
         customer.rentMovie(pulpFiction, 2);
@@ -58,6 +48,24 @@ public class CustomerTest {
      * aufgerufen werden, hier wird diese nur einmal aufgerufen und damit wird nur der
      * Base/Price bzw. Preisaufschlag berechnet, allerdings nicht der Gesamtpreis.
      */
+
+    @Test
+    public void testPrintingStatementFooterWithOneMovie() throws Exception {
+        customer.rentMovie(pulpFiction, 1);
+
+        String actual = customer.printStatementFooter();
+        String expected = "Gesamt: 2,00\n";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testStatementDetailForRentals() throws Exception {
+        customer.rentMovie(buffalo66, 1);
+        String statement = customer.printStatementDetail();
+        assertEquals("\tBuffalo66\t2,00\n", statement);
+    }
+
     @Test
     public void testStatementDetailForRentalLines() throws Exception {
         customer.rentMovie(buffalo66, 4);
@@ -68,12 +76,5 @@ public class CustomerTest {
 
         String exactlyThreeLines = "(.*\n){3}";
         assertTrue(actual.matches(exactlyThreeLines));
-    }
-
-    @Test
-    public void testStatementDetailForRentals() throws Exception {
-        customer.rentMovie(buffalo66, 1);
-        String statement = customer.printStatementDetail();
-        assertEquals("\tBuffalo66\t2,00\n", statement);
     }
 }
