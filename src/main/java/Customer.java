@@ -13,4 +13,12 @@ public class Customer {
     public Euro getTotalCharge() {
         return totalCharge;
     }
+
+    public void rentMovie(Movie movie, int daysRented) {
+
+    }
+
+    public String printStatement() {
+        return null;
+    }
 }
