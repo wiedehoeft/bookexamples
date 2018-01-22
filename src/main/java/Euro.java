@@ -1,3 +1,6 @@
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Euro {
 
     private final long cents;
@@ -43,5 +46,11 @@ public class Euro {
     @Override
     public int hashCode() {
         return (int) cents;
+    }
+
+    public String format() {
+        NumberFormat format = NumberFormat.getInstance(Locale.GERMANY);
+        format.setMinimumFractionDigits(2);
+        return format.format(getAmount());
     }
 }

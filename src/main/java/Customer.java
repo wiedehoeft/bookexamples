@@ -1,27 +1,36 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
 
-    private Euro totalCharge;
-
-    public Customer() {
-        this.totalCharge = new Euro(0.00);
-    }
-
-    public void rentMovie(int daysRented) {
-        this.totalCharge = totalCharge.plus(Movie.getCharge(daysRented));
-    }
+    private List<Rental> rentals = new ArrayList<>();
 
     public Euro getTotalCharge() {
-        return totalCharge;
+        Euro result = new Euro(0.00);
+
+        for (Rental rental : rentals) {
+            result = result.plus(rental.getCharge());
+        }
+        return result;
     }
 
     public void rentMovie(Movie movie, int daysRented) {
-
+        rentals.add(new Rental(movie, daysRented));
     }
 
     public String printStatement() {
-        return "\tBuffalo 66\t3,00\n"
-                + "\tDas Dschungelbuch\t1,50\n"
-                + "\tPulp Fiction\t5,50\n"
-                + "Gesamt: 10,00\n";
+        StringBuilder result = new StringBuilder();
+
+        for (Rental rental : rentals) {
+            result
+                    .append("\t")
+                    .append(rental.getMovieTitle())
+                    .append("\t")
+                    .append(rental.getCharge().format())
+                    .append("\n");
+        }
+        result.append("Gesamt: ").append(getTotalCharge().format()).append("\n");
+
+        return result.toString();
     }
 }

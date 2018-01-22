@@ -23,34 +23,26 @@ public class CustomerTest {
 
     @Test
     public void testRentingOneMovie() throws Exception {
-        customer.rentMovie(1);
+        customer.rentMovie(pulpFiction, 1);
 
         assertEquals(new Euro(2.00), customer.getTotalCharge());
     }
 
     @Test
-    public void testRentingTwoMovies() throws Exception {
-        customer.rentMovie(1);
-        customer.rentMovie(2);
-
-        assertEquals(new Euro(4.00), customer.getTotalCharge());
-    }
-
-    @Test
     public void testRentingThreeMovies() throws Exception {
-        customer.rentMovie(1);
-        customer.rentMovie(2);
-        customer.rentMovie(3);
+        customer.rentMovie(pulpFiction, 1);
+        customer.rentMovie(pulpFiction, 2);
+        customer.rentMovie(pulpFiction, 3);
 
         assertEquals(new Euro(7.75), customer.getTotalCharge());
     }
 
     @Test
     public void testRentingFourMovies() throws Exception {
-        customer.rentMovie(1);
-        customer.rentMovie(2);
-        customer.rentMovie(3);
-        customer.rentMovie(4);
+        customer.rentMovie(pulpFiction, 1);
+        customer.rentMovie(pulpFiction, 2);
+        customer.rentMovie(pulpFiction, 3);
+        customer.rentMovie(pulpFiction, 4);
 
         assertEquals(new Euro(13.25), customer.getTotalCharge());
     }
@@ -65,7 +57,7 @@ public class CustomerTest {
 
         String actual = customer.printStatement();
 
-        String expected = "\tBuffalo 66\t3,00\n"
+        String expected = "\tBuffalo66\t3,00\n"
                 + "\tDas Dschungelbuch\t1,50\n"
                 + "\tPulp Fiction\t5,50\n"
                 + "Gesamt: 10,00\n";
