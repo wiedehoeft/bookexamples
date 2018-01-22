@@ -6,13 +6,13 @@ public class Euro {
     private final long cents;
 
     public Euro(double euro) {
-        if (euro < 0) {
-            throw new IllegalArgumentException("negative amount");
-        }
-        cents = Math.round(euro * 100.0);
+        this(Math.round(euro * 100));
     }
 
     private Euro(long cents) {
+        if (cents < 0) {
+            throw new IllegalArgumentException("negative amount");
+        }
         this.cents = cents;
     }
 

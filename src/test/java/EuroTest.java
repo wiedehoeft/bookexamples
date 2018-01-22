@@ -15,9 +15,8 @@ public class EuroTest {
 
     @Test
     public void rounding() throws Exception {
-        Euro rounded = new Euro(1.995);
-
-        assertEquals(two, rounded);
+        assertEquals(new Euro(0.49), new Euro(0.494));
+        assertEquals(new Euro(0.50), new Euro(0.495));
     }
 
     @Test
@@ -50,6 +49,11 @@ public class EuroTest {
         Euro result = two.times(7);
         assertEquals(new Euro(14.00), result);
         assertEquals(new Euro(2.00), two);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativeMultiplying() throws Exception {
+        two.times(-2);
     }
 
     @Test
