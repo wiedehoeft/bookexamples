@@ -1,8 +1,11 @@
 public class Price {
 
-    private Euro basePrice = new Euro(1.50);
-    private Euro pricePerDay = new Euro(1.50);
-    private int daysDiscounted = 3;
+    public static final Price NEWRELEASE = new Price(new Euro(2.00), new Euro(1.75), 2);
+    public static final Price REGULAR = new Price(new Euro(1.50), new Euro(1.55), 3);
+
+    private Euro basePrice;
+    private Euro pricePerDay;
+    private int daysDiscounted;
 
     public Price(Euro basePrice, Euro pricePerDay, int daysDiscounted) {
         this.basePrice = basePrice;
