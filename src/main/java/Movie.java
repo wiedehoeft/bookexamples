@@ -5,8 +5,7 @@ public class Movie {
     private static final int DAYS_DISCOUNTED = 2;
 
     public static double getCharge(int daysRented) {
-        Euro result = tmpCharge(daysRented);
-        return result.getAmount();
+        return tmpCharge(daysRented).getAmount();
     }
 
     public static Euro tmpCharge(int daysRented) {
