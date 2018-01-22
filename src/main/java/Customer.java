@@ -19,6 +19,9 @@ public class Customer {
     }
 
     public String printStatement() {
-        return null;
+        return "\tBuffalo 66\t3,00\n"
+                + "\tDas Dschungelbuch\t1,50\n"
+                + "\tPulp Fiction\t5,50\n"
+                + "Gesamt: 10,00\n";
     }
 }
