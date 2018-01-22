@@ -22,10 +22,13 @@ public class CustomerTest {
     }
 
     @Test
-    public void testRentingOneMovie() throws Exception {
+    public void testPrintingStatementFooterWithOneMovie() throws Exception {
         customer.rentMovie(pulpFiction, 1);
 
-        assertEquals(new Euro(2.00), customer.getTotalCharge());
+        String actual = customer.printStatementFooter();
+        String expected = "Gesamt: 2,00\n";
+
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -48,26 +51,23 @@ public class CustomerTest {
     }
 
     /**
-     * TODO: s. following text
+     * TODO: look following text
      * Es ist aktuell nicht klar, wie genau diese Implementierung gemeint ist,
      * zur Berechnung der Gesamtkosten muss die Methode rentMovie für jeden Tag
      * aufgerufen werden, hier wird diese nur einmal aufgerufen und damit wird nur der
      * Base/Price bzw. Preisaufschlag berechnet, allerdings nicht der Gesamtpreis.
      */
     @Test
-    public void testPrintingStatement() throws Exception {
+    public void testPrintingStatementDetail() throws Exception {
         customer.rentMovie(buffalo66, 4);
         customer.rentMovie(jungleBook, 1);
         customer.rentMovie(pulpFiction, 4);
 
-        buffalo66.setPrice(Price.REGULAR);
+        String actual = customer.printStatementDetail();
 
-        String actual = customer.printStatement();
-
-        String expected = "\tBuffalo66\t3,00\n"
+        String expected = "\tBuffalo66\t5,50\n"
                 + "\tDas Dschungelbuch\t1,50\n"
-                + "\tPulp Fiction\t5,50\n"
-                + "Gesamt: 10,00\n";
+                + "\tPulp Fiction\t5,50\n";
 
         assertEquals(expected, actual);
 

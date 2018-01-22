@@ -19,8 +19,15 @@ public class Customer {
     }
 
     public String printStatement() {
-        StringBuilder result = new StringBuilder();
+        return printStatementDetail() + printStatementFooter();
+    }
 
+    public String printStatementFooter() {
+        return "Gesamt: " + getTotalCharge().format() + "\n";
+    }
+
+    public String printStatementDetail() {
+        StringBuilder result = new StringBuilder();
         for (Rental rental : rentals) {
             result
                     .append("\t")
@@ -29,8 +36,6 @@ public class Customer {
                     .append(rental.getCharge().format())
                     .append("\n");
         }
-        result.append("Gesamt: ").append(getTotalCharge().format()).append("\n");
-
         return result.toString();
     }
 }
