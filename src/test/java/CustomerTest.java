@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CustomerTest {
 
@@ -58,18 +59,21 @@ public class CustomerTest {
      * Base/Price bzw. Preisaufschlag berechnet, allerdings nicht der Gesamtpreis.
      */
     @Test
-    public void testPrintingStatementDetail() throws Exception {
+    public void testStatementDetailForRentalLines() throws Exception {
         customer.rentMovie(buffalo66, 4);
         customer.rentMovie(jungleBook, 1);
         customer.rentMovie(pulpFiction, 4);
 
         String actual = customer.printStatementDetail();
 
-        String expected = "\tBuffalo66\t5,50\n"
-                + "\tDas Dschungelbuch\t1,50\n"
-                + "\tPulp Fiction\t5,50\n";
+        String exactlyThreeLines = "(.*\n){3}";
+        assertTrue(actual.matches(exactlyThreeLines));
+    }
 
-        assertEquals(expected, actual);
-
+    @Test
+    public void testStatementDetailForRentals() throws Exception {
+        customer.rentMovie(buffalo66, 1);
+        String statement = customer.printStatementDetail();
+        assertEquals("\tBuffalo66\t2,00\n", statement);
     }
 }
