@@ -17,7 +17,7 @@ public class Euro {
         return cents / 100.0;
     }
 
-    public Euro add(Euro other) {
+    public Euro plus(Euro other) {
         return new Euro(this.cents + other.cents);
     }
 

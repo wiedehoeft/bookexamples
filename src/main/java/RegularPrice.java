@@ -12,6 +12,6 @@ public class RegularPrice {
 
         int additionalDays = daysRented - DAYS_DISCOUNTED;
 
-        return BASE_PRICE.add(PRICE_PER_DAY.times(additionalDays));
+        return BASE_PRICE.plus(PRICE_PER_DAY.times(additionalDays));
     }
 }

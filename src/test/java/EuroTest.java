@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +22,7 @@ public class EuroTest {
 
     @Test
     public void adding() throws Exception {
-        Euro sum = two.add(two);
+        Euro sum = two.plus(two);
 
         assertEquals(sum, new Euro(4.00));
         assertEquals(two, new Euro(2.00));
