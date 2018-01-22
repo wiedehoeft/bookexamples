@@ -1,12 +1,16 @@
 public class Customer {
 
-    private double totalCharge;
+    private Euro totalCharge;
 
-    public void rentMovie(int daysRented) {
-        totalCharge += Movie.getCharge(daysRented).getAmount();
+    public Customer() {
+        this.totalCharge = new Euro(0.00);
     }
 
-    public double getTotalCharge() {
+    public void rentMovie(int daysRented) {
+        this.totalCharge = totalCharge.plus(Movie.getCharge(daysRented));
+    }
+
+    public Euro getTotalCharge() {
         return totalCharge;
     }
 }

@@ -2,7 +2,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class CustomerTest {
 
@@ -15,14 +14,14 @@ public class CustomerTest {
 
     @Test
     public void testRentingNoMovie() throws Exception {
-        assertEquals(0, customer.getTotalCharge(), 0.001);
+        assertEquals(new Euro(0), customer.getTotalCharge());
     }
 
     @Test
     public void testRentingOneMovie() throws Exception {
         customer.rentMovie(1);
 
-        assertEquals(2.0, customer.getTotalCharge(), 0.001);
+        assertEquals(new Euro(2.00), customer.getTotalCharge());
     }
 
     @Test
@@ -30,7 +29,7 @@ public class CustomerTest {
         customer.rentMovie(1);
         customer.rentMovie(2);
 
-        assertEquals(4.0, customer.getTotalCharge(), 0.001);
+        assertEquals(new Euro(4.00), customer.getTotalCharge());
     }
 
     @Test
@@ -39,7 +38,7 @@ public class CustomerTest {
         customer.rentMovie(2);
         customer.rentMovie(3);
 
-        assertEquals(7.75, customer.getTotalCharge(), 0.001);
+        assertEquals(new Euro(7.75), customer.getTotalCharge());
     }
 
     @Test
@@ -49,6 +48,6 @@ public class CustomerTest {
         customer.rentMovie(3);
         customer.rentMovie(4);
 
-        assertEquals(13.25, customer.getTotalCharge(), 0.001);
+        assertEquals(new Euro(13.25), customer.getTotalCharge());
     }
 }
