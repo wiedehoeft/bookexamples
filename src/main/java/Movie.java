@@ -1,6 +1,6 @@
 public class Movie {
 
     public static Euro getCharge(int daysRented) {
-        return NewReleasePrice.getCharge(daysRented);
+        return new NewReleasePrice().getCharge(daysRented);
     }
 }
