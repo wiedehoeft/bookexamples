@@ -45,4 +45,11 @@ public class EuroTest {
         final double NEGATIVE_AMOUNT = -2.00;
         new Euro(NEGATIVE_AMOUNT);
     }
+
+    @Test
+    public void testMultiplying() throws Exception {
+        Euro result = two.times(7);
+        assertEquals(new Euro(14.00), result);
+        assertEquals(new Euro(2.00), two);
+    }
 }

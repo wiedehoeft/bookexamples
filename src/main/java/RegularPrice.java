@@ -10,6 +10,8 @@ public class RegularPrice {
             return BASE_PRICE;
         }
 
-        return BASE_PRICE.add(PRICE_PER_DAY);
+        int additionalDays = daysRented - DAYS_DISCOUNTED;
+
+        return BASE_PRICE.add(PRICE_PER_DAY.times(additionalDays));
     }
 }
