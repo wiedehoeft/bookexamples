@@ -3,7 +3,7 @@ public class Customer {
     private double totalCharge;
 
     public void rentMovie(int daysRented) {
-        totalCharge += Movie.tmpCharge(daysRented).getAmount();
+        totalCharge += Movie.getCharge(daysRented).getAmount();
     }
 
     public double getTotalCharge() {
