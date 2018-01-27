@@ -8,7 +8,6 @@ public class CustomerTest implements IPrinter {
 
     private Customer customer;
     private Movie buffalo66, jungleBook, pulpFiction;
-    private IPrinter stubPrinter;
     private String printerOutput;
 
     @Before
