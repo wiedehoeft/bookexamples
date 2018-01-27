@@ -1,4 +1,4 @@
-public class Price {
+public class Price implements IPrice {
 
     public static final Price NEWRELEASE = new Price(new Euro(2.00), new Euro(1.75), 2);
     public static final Price REGULAR = new Price(new Euro(1.50), new Euro(1.50), 3);

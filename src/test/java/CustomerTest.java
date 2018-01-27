@@ -12,7 +12,7 @@ public class CustomerTest {
     @Before
     public void setUp() throws Exception {
         customer = new Customer();
-        buffalo66 = new Movie("Buffalo66", Price.NEWRELEASE);
+        buffalo66 = new Movie("Buffalo66", new StubPrice());
         jungleBook = new Movie("Das Dschungelbuch", Price.REGULAR);
         pulpFiction = new Movie("Pulp Fiction", Price.NEWRELEASE);
     }
@@ -40,14 +40,6 @@ public class CustomerTest {
 
         assertEquals(new Euro(13.25), customer.getTotalCharge());
     }
-
-    /**
-     * TODO: look following text
-     * Es ist aktuell nicht klar, wie genau diese Implementierung gemeint ist,
-     * zur Berechnung der Gesamtkosten muss die Methode rentMovie für jeden Tag
-     * aufgerufen werden, hier wird diese nur einmal aufgerufen und damit wird nur der
-     * Base/Price bzw. Preisaufschlag berechnet, allerdings nicht der Gesamtpreis.
-     */
 
     @Test
     public void testPrintingStatementFooterWithOneMovie() throws Exception {
