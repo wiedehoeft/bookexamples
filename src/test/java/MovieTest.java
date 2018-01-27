@@ -22,4 +22,13 @@ public class MovieTest {
         movie.setPrice(Price.REGULAR);
         assertEquals(new Euro(1.50), movie.getCharge(3));
     }
+
+    /**
+     * Test adds no extra functionality, it just demonstrates stub objects.
+     */
+    @Test
+    public void testUsingStubPrice() throws Exception {
+        Movie movie = new Movie("Brazil", new StubPrice());
+        assertEquals(new Euro(2.00), movie.getCharge(3));
+    }
 }

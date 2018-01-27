@@ -4,10 +4,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class CustomerTest {
+public class CustomerTest implements IPrinter {
 
     private Customer customer;
     private Movie buffalo66, jungleBook, pulpFiction;
+    private IPrinter stubPrinter;
+    private String printerOutput;
 
     @Before
     public void setUp() throws Exception {
@@ -15,6 +17,7 @@ public class CustomerTest {
         buffalo66 = new Movie("Buffalo66", new StubPrice());
         jungleBook = new Movie("Das Dschungelbuch", Price.REGULAR);
         pulpFiction = new Movie("Pulp Fiction", Price.NEWRELEASE);
+        printerOutput = "";
     }
 
     @Test
@@ -54,8 +57,8 @@ public class CustomerTest {
     @Test
     public void testStatementDetailForRentals() throws Exception {
         customer.rentMovie(buffalo66, 1);
-        String statement = customer.printStatementDetail();
-        assertEquals("\tBuffalo66\t2,00\n", statement);
+        customer.printStatementDetail(this);
+        assertEquals("\tBuffalo66\t2,00\n", printerOutput);
     }
 
     @Test
@@ -64,9 +67,14 @@ public class CustomerTest {
         customer.rentMovie(jungleBook, 1);
         customer.rentMovie(pulpFiction, 4);
 
-        String actual = customer.printStatementDetail();
+        customer.printStatementDetail(this);
 
         String exactlyThreeLines = "(.*\n){3}";
-        assertTrue(actual.matches(exactlyThreeLines));
+        assertTrue(printerOutput.matches(exactlyThreeLines));
+    }
+
+    @Override
+    public void print(String line) {
+        printerOutput += line;
     }
 }

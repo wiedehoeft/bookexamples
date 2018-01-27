@@ -18,15 +18,11 @@ public class Customer {
         rentals.add(new Rental(movie, daysRented));
     }
 
-    public String printStatement() {
-        return printStatementDetail() + printStatementFooter();
-    }
-
     public String printStatementFooter() {
         return "Gesamt: " + getTotalCharge().format() + "\n";
     }
 
-    public String printStatementDetail() {
+    public void printStatementDetail(IPrinter printer) {
         StringBuilder result = new StringBuilder();
         for (Rental rental : rentals) {
             result
@@ -35,7 +31,8 @@ public class Customer {
                     .append("\t")
                     .append(rental.getCharge().format())
                     .append("\n");
+            printer.print(result.toString());
+            result.delete(0, result.toString().length());
         }
-        return result.toString();
     }
 }
