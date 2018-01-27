@@ -22,17 +22,14 @@ public class Customer {
         return "Gesamt: " + getTotalCharge().format() + "\n";
     }
 
-    public void printStatementDetail(IPrinter printer) {
-        StringBuilder result = new StringBuilder();
+    public void printStatementDetail(IPrinter printer) throws OutOfPaperException {
         for (Rental rental : rentals) {
-            result
-                    .append("\t")
-                    .append(rental.getMovieTitle())
-                    .append("\t")
-                    .append(rental.getCharge().format())
-                    .append("\n");
-            printer.print(result.toString());
-            result.delete(0, result.toString().length());
+            printer.tab();
+            printer.print(rental.getMovieTitle());
+            printer.tab();
+            printer.print(rental.getCharge().format());
+            printer.crlf();
         }
+        printer.cutPaper();
     }
 }
