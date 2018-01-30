@@ -7,7 +7,10 @@ public class Price implements IPrice {
     private Euro pricePerDay;
     private int daysDiscounted;
 
-    public Price(Euro basePrice, Euro pricePerDay, int daysDiscounted) {
+  public Price() {
+  }
+
+  public Price(Euro basePrice, Euro pricePerDay, int daysDiscounted) {
         this.basePrice = basePrice;
         this.pricePerDay = pricePerDay;
         this.daysDiscounted = daysDiscounted;
@@ -22,5 +25,12 @@ public class Price implements IPrice {
         int additionalDays = daysRented - daysDiscounted;
 
         return basePrice.plus(pricePerDay.times(additionalDays));
+    }
+
+    @Override
+    public void printOn(IStatement statement, int daysRented) throws OutOfPaperException {
+      Euro flat = new Euro(1.50);
+      Euro incremental = new Euro(1.50).times(daysRented - 2);
+      statement.printMovieCharge(Euro.max(flat, incremental));
     }
 }

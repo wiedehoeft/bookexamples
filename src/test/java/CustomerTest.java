@@ -16,7 +16,7 @@ public class CustomerTest implements IPrinter {
 
     @Before
     public void setUp() throws Exception {
-        customer = new Customer();
+        customer = new Customer("Hugo");
         buffalo66 = new Movie("Buffalo66", new StubPrice());
         jungleBook = new Movie("Das Dschungelbuch", Price.REGULAR);
         pulpFiction = new Movie("Pulp Fiction", Price.NEWRELEASE);
