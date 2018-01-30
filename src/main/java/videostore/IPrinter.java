@@ -2,11 +2,11 @@ package videostore;
 
 public interface IPrinter {
 
-    public void print(String line) throws OutOfPaperException;
+  public void print(String line);
 
-    public void tab() throws OutOfPaperException;
+  public void tab();
 
-    public void crlf() throws OutOfPaperException;
+  public void crlf();
 
-    public void cutPaper() throws OutOfPaperException;
+  public void cutPaper();
 }

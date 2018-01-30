@@ -2,11 +2,11 @@ package videostore;
 
 public interface IStatement {
 
-  public void printCustomerName(String name) throws OutOfPaperException;
+  public void printCustomerName(String name);
 
-  void printTotalCharge() throws OutOfPaperException;
+  void printTotalCharge();
 
-  void printMovieTitle(String movieTitle) throws OutOfPaperException;
+  void printMovieTitle(String movieTitle);
 
-  void printMovieCharge(Euro charge) throws OutOfPaperException;
+  void printMovieCharge(Euro charge);
 }

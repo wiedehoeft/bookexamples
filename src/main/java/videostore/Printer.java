@@ -2,22 +2,22 @@ package videostore;
 
 public class Printer implements IPrinter {
   @Override
-  public void print(String line) throws OutOfPaperException {
-
+  public void print(String line) {
+    System.out.println(line);
   }
 
   @Override
-  public void tab() throws OutOfPaperException {
-
+  public void tab() {
+    System.out.println("\t");
   }
 
   @Override
-  public void crlf() throws OutOfPaperException {
-
+  public void crlf() {
+    System.out.println("\n");
   }
 
   @Override
-  public void cutPaper() throws OutOfPaperException {
+  public void cutPaper() {
 
   }
 }

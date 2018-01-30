@@ -59,18 +59,22 @@ public class StatementTest {
   }
 
   @Test
-  public void testBasePrice() throws OutOfPaperException {
+  public void testBasePrice() {
     verifyPrice(1.50, 1);
+  }
+
+  @Test
+  public void testBasePriceIsSameForThreeDays() throws Exception {
     verifyPrice(1.50, 3);
   }
 
   @Test
-  public void testIncrementalPrice() throws OutOfPaperException {
+  public void testIncrementalPrice() {
     verifyPrice(3.00, 4);
     verifyPrice(7.50, 7);
   }
 
-  private void verifyPrice(double charge, int daysRented) throws OutOfPaperException {
+  private void verifyPrice(double charge, int daysRented) {
     new Price().printOn(statement, daysRented);
     verify(statement).printMovieCharge(new Euro(charge));
   }

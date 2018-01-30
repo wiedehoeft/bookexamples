@@ -14,12 +14,11 @@ public class VideoStore {
     customer.addRental(rental);
   }
 
-  public void printStatement() throws OutOfPaperException {
+  public void printStatement()  {
     IPrinter printer = new Printer();
     IStatement statement = new Statement(printer);
     customer.printOn(statement);
   }
-
 
   public static VideoStore bindCustomer(String name) {
     if (!customers.containsKey(name)) {

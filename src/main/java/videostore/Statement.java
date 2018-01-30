@@ -11,13 +11,13 @@ public class Statement implements IStatement {
   }
 
   @Override
-  public void printCustomerName(String name) throws OutOfPaperException {
+  public void printCustomerName(String name) {
     printer.print("videostore.Rental records for " + name);
     printer.crlf();
   }
 
   @Override
-  public void printTotalCharge() throws OutOfPaperException {
+  public void printTotalCharge() {
     printer.print("Amount owed is " + total.format());
     printer.crlf();
     printer.cutPaper();
@@ -25,13 +25,13 @@ public class Statement implements IStatement {
   }
 
   @Override
-  public void printMovieTitle(String movieTitle) throws OutOfPaperException {
+  public void printMovieTitle(String movieTitle) {
     printer.tab();
     printer.print(movieTitle);
   }
 
   @Override
-  public void printMovieCharge(Euro charge) throws OutOfPaperException {
+  public void printMovieCharge(Euro charge) {
     printer.tab();
     printer.print(charge.format());
     printer.crlf();
