@@ -1,3 +1,5 @@
+package videostore;
+
 public class StubPrice implements IPrice {
 
     @Override

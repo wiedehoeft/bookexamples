@@ -1,3 +1,5 @@
+package videostore;
+
 public interface IStatement {
 
   public void printCustomerName(String name) throws OutOfPaperException;

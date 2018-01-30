@@ -1,3 +1,5 @@
+package videostore;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -89,7 +91,7 @@ public class StatementTest {
 
     //Then
     InOrder inOrder = Mockito.inOrder(printer);
-    inOrder.verify(printer).print("Rental records for Zing Zang Zong");
+    inOrder.verify(printer).print("videostore.Rental records for Zing Zang Zong");
     inOrder.verify(printer).crlf();
     inOrder.verify(printer).tab();
     inOrder.verify(printer).print("Bladerunner");

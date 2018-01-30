@@ -1,3 +1,5 @@
+package videostore;
+
 public class Statement implements IStatement {
 
 
@@ -10,7 +12,7 @@ public class Statement implements IStatement {
 
   @Override
   public void printCustomerName(String name) throws OutOfPaperException {
-    printer.print("Rental records for " + name);
+    printer.print("videostore.Rental records for " + name);
     printer.crlf();
   }
 

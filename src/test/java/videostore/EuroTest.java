@@ -1,3 +1,6 @@
+package videostore;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,23 +18,23 @@ public class EuroTest {
 
     @Test
     public void rounding() throws Exception {
-        assertEquals(new Euro(0.49), new Euro(0.494));
-        assertEquals(new Euro(0.50), new Euro(0.495));
+        Assert.assertEquals(new Euro(0.49), new Euro(0.494));
+        Assert.assertEquals(new Euro(0.50), new Euro(0.495));
     }
 
     @Test
     public void adding() throws Exception {
         Euro sum = two.plus(two);
 
-        assertEquals(sum, new Euro(4.00));
-        assertEquals(two, new Euro(2.00));
+        Assert.assertEquals(sum, new Euro(4.00));
+        Assert.assertEquals(two, new Euro(2.00));
     }
 
     @Test
     public void testEquality() throws Exception {
-        assertEquals(two, two);
-        assertEquals(two, new Euro(2.00));
-        assertEquals(new Euro(2.00), two);
+        Assert.assertEquals(two, two);
+        Assert.assertEquals(two, new Euro(2.00));
+        Assert.assertEquals(new Euro(2.00), two);
 
         assertFalse(two.equals(new Euro(7.00)));
         assertFalse(two.equals(null));
@@ -47,8 +50,8 @@ public class EuroTest {
     @Test
     public void testMultiplying() throws Exception {
         Euro result = two.times(7);
-        assertEquals(new Euro(14.00), result);
-        assertEquals(new Euro(2.00), two);
+        Assert.assertEquals(new Euro(14.00), result);
+        Assert.assertEquals(new Euro(2.00), two);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -58,6 +61,6 @@ public class EuroTest {
 
     @Test
     public void testFormatting() throws Exception {
-        assertEquals("2,00", two.format());
+        Assert.assertEquals("2,00", two.format());
     }
 }

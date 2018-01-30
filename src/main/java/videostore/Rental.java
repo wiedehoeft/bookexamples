@@ -1,3 +1,5 @@
+package videostore;
+
 public class Rental implements IRental {
 
   private String movieTitle;

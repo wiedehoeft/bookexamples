@@ -1,3 +1,6 @@
+package videostore;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,6 +11,6 @@ public class RentalTest {
     public void testUsingMovie() throws Exception {
         Movie movie = new Movie("Blow-Up", Price.NEWRELEASE);
         Rental rental = new Rental(movie, 2);
-        assertEquals(new Euro(2.00), rental.getCharge());
+        Assert.assertEquals(new Euro(2.00), rental.getCharge());
     }
 }

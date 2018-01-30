@@ -1,3 +1,5 @@
+package videostore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Customer {
     this.name = name;
   }
 
+  @Deprecated
   public Euro getTotalCharge() {
     Euro result = new Euro(0.00);
 
@@ -24,10 +27,12 @@ public class Customer {
     rentals.add(new Rental(movie, daysRented));
   }
 
+  @Deprecated
   public String printStatementFooter() {
     return "Gesamt: " + getTotalCharge().format() + "\n";
   }
 
+  @Deprecated
   public void printStatementDetail(IPrinter printer) throws OutOfPaperException {
     for (Rental rental : rentals) {
       printer.tab();

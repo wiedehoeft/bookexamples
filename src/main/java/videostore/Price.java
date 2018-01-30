@@ -1,3 +1,5 @@
+package videostore;
+
 public class Price implements IPrice {
 
     public static final Price NEWRELEASE = new Price(new Euro(2.00), new Euro(1.75), 2);
@@ -10,12 +12,14 @@ public class Price implements IPrice {
   public Price() {
   }
 
+  @Deprecated
   public Price(Euro basePrice, Euro pricePerDay, int daysDiscounted) {
         this.basePrice = basePrice;
         this.pricePerDay = pricePerDay;
         this.daysDiscounted = daysDiscounted;
     }
 
+    @Deprecated
     public Euro getCharge(int daysRented) {
 
         if (daysRented <= daysDiscounted) {

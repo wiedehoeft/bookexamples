@@ -1,3 +1,6 @@
+package videostore;
+
+@Deprecated
 public class Movie {
 
     private String title;

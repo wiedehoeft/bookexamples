@@ -1,3 +1,6 @@
+package videostore;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -26,7 +29,7 @@ public class CustomerTest implements IPrinter {
 
     @Test
     public void testRentingNoMovie() throws Exception {
-        assertEquals(new Euro(0), customer.getTotalCharge());
+        Assert.assertEquals(new Euro(0), customer.getTotalCharge());
     }
 
     @Test
@@ -35,7 +38,7 @@ public class CustomerTest implements IPrinter {
         customer.rentMovie(pulpFiction, 2);
         customer.rentMovie(pulpFiction, 3);
 
-        assertEquals(new Euro(7.75), customer.getTotalCharge());
+        Assert.assertEquals(new Euro(7.75), customer.getTotalCharge());
     }
 
     @Test
@@ -45,7 +48,7 @@ public class CustomerTest implements IPrinter {
         customer.rentMovie(pulpFiction, 3);
         customer.rentMovie(pulpFiction, 4);
 
-        assertEquals(new Euro(13.25), customer.getTotalCharge());
+        Assert.assertEquals(new Euro(13.25), customer.getTotalCharge());
     }
 
     @Test

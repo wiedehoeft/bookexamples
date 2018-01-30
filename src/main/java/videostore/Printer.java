@@ -1,3 +1,5 @@
+package videostore;
+
 public class Printer implements IPrinter {
   @Override
   public void print(String line) throws OutOfPaperException {
