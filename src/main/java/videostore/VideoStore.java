@@ -7,6 +7,17 @@ public class VideoStore {
 
   private static Map customers = new HashMap();
   private Customer customer;
+  private Map<Integer, Movie> movies;
+  private NumberSequence sequence;
+
+  public VideoStore() {
+    movies = new HashMap<>();
+    sequence = new NumberSequence();
+  }
+
+  public int nextMovieNumber() {
+    return sequence.nextNumber();
+  }
 
   public void rentMovie(String movieTitle, int daysRented) {
     IPrice price = new Price();
@@ -31,5 +42,18 @@ public class VideoStore {
 
   private VideoStore(Customer customer) {
     this.customer = customer;
+  }
+
+  public Movie newMovie(int number, String title, String category) {
+    Price price = Prices.getPrice(category);
+    Movie movie = new Movie(title, price);
+    Integer key = new Integer(number);
+    movies.put(key, movie);
+    return movie;
+  }
+
+  public Movie getMovie(int number) {
+    Integer key = new Integer(number);
+    return movies.get(key);
   }
 }
