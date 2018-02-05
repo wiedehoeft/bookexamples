@@ -12,11 +12,13 @@ public class VideoStore {
   private Map<Integer, Movie> movies;
   private NumberSequence sequence;
   private List<Rental> rentals;
+  private Map<Integer, RentalItem> items;
 
   public VideoStore() {
     movies = new HashMap<>();
     sequence = new NumberSequence();
     rentals = new ArrayList<>();
+    items = new HashMap<>();
   }
 
   public int nextMovieNumber() {
@@ -54,7 +56,7 @@ public class VideoStore {
     }
 
     Price price = Prices.getPrice(category);
-    Movie movie = new Movie(title, price);
+    Movie movie = new Movie(title, price, number);
     Integer key = new Integer(number);
     movies.put(key, movie);
     return movie;
@@ -71,11 +73,28 @@ public class VideoStore {
       throw new UnknownMovieException(movieNumber);
     }
     Rental rental = new Rental(movie, daysRented);
+    addRentalItem(rental);
     rentals.add(rental);
     return rental;
   }
 
+  private void addRentalItem(Rental rental) {
+    int movieNumber = rental.getMovieNumber();
+    Integer key = new Integer(movieNumber);
+    RentalItem item = items.get(key);
+    if (item == null) {
+      Movie movie = rental.getMovie();
+      item = new RentalItem(movie);
+      items.put(key, item);
+    }
+    item.addRental(rental);
+  }
+
   public int numberOfRentals() {
     return rentals.size();
+  }
+
+  public List<RentalItem> allRentalItems() {
+    return new ArrayList<>(items.values());
   }
 }

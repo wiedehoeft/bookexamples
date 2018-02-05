@@ -32,4 +32,16 @@ public class Rental implements IRental {
     statement.printMovieTitle(movieTitle);
     price.printOn(statement, daysRented);
   }
+
+  public int getDaysRented() {
+    return daysRented;
+  }
+
+  public int getMovieNumber() {
+    return movie.getNumber();
+  }
+
+  public Movie getMovie() {
+    return movie;
+  }
 }

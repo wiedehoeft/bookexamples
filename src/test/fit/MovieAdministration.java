@@ -23,7 +23,7 @@ public class MovieAdministration extends Fixture {
 
   public void save() throws MovieNumberAlreadyInUseException {
     Price price = getPrice(priceCategory);
-    Movie movie = new Movie(movieTitle, price);
+    Movie movie = new Movie(movieTitle, price, 1);
     Integer key = new Integer(movieNumber);
     movies.put(key, movie);
 
