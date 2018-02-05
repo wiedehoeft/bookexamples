@@ -1,6 +1,8 @@
 package videostore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class VideoStore {
@@ -9,10 +11,12 @@ public class VideoStore {
   private Customer customer;
   private Map<Integer, Movie> movies;
   private NumberSequence sequence;
+  private List<Rental> rentals;
 
   public VideoStore() {
     movies = new HashMap<>();
     sequence = new NumberSequence();
+    rentals = new ArrayList<>();
   }
 
   public int nextMovieNumber() {
@@ -55,5 +59,12 @@ public class VideoStore {
   public Movie getMovie(int number) {
     Integer key = new Integer(number);
     return movies.get(key);
+  }
+
+  public Rental addRental(int movieNumber, int daysRented) {
+    Movie movie = getMovie(movieNumber);
+    Rental rental = new Rental(movie, daysRented);
+    rentals.add(rental);
+    return rental;
   }
 }

@@ -1,13 +1,12 @@
 import fit.Fixture;
 import videostore.Movie;
-import videostore.NumberSequence;
 import videostore.Price;
 import videostore.VideoStore;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static videostore.MovieAdministration.getPrice;
+import static videostore.Prices.getPrice;
 
 public class MovieAdministration extends Fixture {
   private int movieNumber;
@@ -15,7 +14,7 @@ public class MovieAdministration extends Fixture {
   private String priceCategory;
   private Map<Integer, Movie> movies = new HashMap<>();
 
-  private VideoStore store = new VideoStore();
+  private VideoStore store = SystemUnderTest.instance();
 
   public void newMovie() {
     movieNumber = store.nextMovieNumber();
