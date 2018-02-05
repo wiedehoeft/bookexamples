@@ -18,7 +18,7 @@ public class Euro {
     this.cents = cents;
   }
 
-  private double getAmount() {
+  public double getAmount() {
     return cents / 100.0;
   }
 

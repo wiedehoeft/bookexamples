@@ -1,4 +1,4 @@
-export CLASSPATH=./fit.jar
-javac -cp fit.jar Pricing.java
-export CLASSPATH=./fit.jar:../fit
+export CLASSPATH=./fit.jar:../../../build/libs/bookexamples-1.0-SNAPSHOT.jar
+javac Pricing.java
+export CLASSPATH=./fit.jar:../fit:../../../build/libs/bookexamples-1.0-SNAPSHOT.jar
 java fit.FileRunner alltests.html alltests-result.html

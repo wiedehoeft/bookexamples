@@ -6,6 +6,6 @@ public class Pricing extends ColumnFixture {
   public int daysRented;
 
   public double regularPrice() {
-    return Price;
+    return Price.REGULAR.getCharge(daysRented).getAmount();
   }
 }

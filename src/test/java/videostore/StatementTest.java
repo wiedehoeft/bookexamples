@@ -59,12 +59,6 @@ public class StatementTest {
   }
 
   @Test
-  public void testBasePrice() throws OutOfPaperException {
-    verifyPrice(1.50, 1);
-    verifyPrice(1.50, 3);
-  }
-
-  @Test
   public void testIncrementalPrice() throws OutOfPaperException {
     verifyPrice(3.00, 4);
     verifyPrice(7.50, 7);
