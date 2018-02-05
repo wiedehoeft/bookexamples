@@ -1,5 +1,6 @@
 import fit.Fixture;
 import videostore.Movie;
+import videostore.MovieNumberAlreadyInUseException;
 import videostore.Price;
 import videostore.VideoStore;
 
@@ -20,7 +21,7 @@ public class MovieAdministration extends Fixture {
     movieNumber = store.nextMovieNumber();
   }
 
-  public void save() {
+  public void save() throws MovieNumberAlreadyInUseException {
     Price price = getPrice(priceCategory);
     Movie movie = new Movie(movieTitle, price);
     Integer key = new Integer(movieNumber);

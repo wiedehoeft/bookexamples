@@ -48,7 +48,11 @@ public class VideoStore {
     this.customer = customer;
   }
 
-  public Movie newMovie(int number, String title, String category) {
+  public Movie newMovie(int number, String title, String category) throws MovieNumberAlreadyInUseException {
+    if (getMovie(number) != null) {
+      throw new MovieNumberAlreadyInUseException(number);
+    }
+
     Price price = Prices.getPrice(category);
     Movie movie = new Movie(title, price);
     Integer key = new Integer(number);

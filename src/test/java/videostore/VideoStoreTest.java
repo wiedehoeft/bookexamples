@@ -47,4 +47,16 @@ public class VideoStoreTest {
 
     //Then => exception thrown
   }
+
+  @Test(expected = MovieNumberAlreadyInUseException.class)
+  public void movieNumberAlreadyInUse() throws Exception {
+
+    // Given
+    videoStore.newMovie(1, "Rashomon", "don't care");
+
+    //When
+    videoStore.newMovie(1, "don't care", "don't care");
+
+    //Then => Exception
+  }
 }
