@@ -9,6 +9,15 @@ public class MovieEntry extends ColumnFixture {
   public String title;
   public String category;
 
+  /**
+   * Does not work for error test cases
+   *
+   * @return
+   */
+//  public void execute() throws Exception {
+//    store.newMovie(number, title, category);
+//  }
+  
   public boolean isValid() {
     try {
       store.newMovie(number, title, category);
