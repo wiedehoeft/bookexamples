@@ -1,14 +1,28 @@
 <html>
-<head> <title> FIT-Tests </title> </head>
+<head>
+    <title> FIT-Tests </title>
+    <meta charset="utf-8"/>
+</head>
 <body>
+
+<h1>Verleihpreise berechnen</h1>
+<p>Die Verleihkosten pro Film staffeln sich danach, wie lange ein Film ausgeliehen wird.
+    Dabei sind zwei Preiskategorien zu unterscheiden:</p>
+<ul>
+    <li>Filme kosten regulär für die ersten drei Tage insgesamt 1,50 Euro.
+        Für jeden weiteren Ausleihtag kommen 1,50 Euro dazu.</li>
+    <li>Neuerscheinungen  kosten für zwei Tage 2 Euro.
+    Ab dem dritten Ausleihtag pro Tag zusätzlich 1,75 Euro.</li>
+</ul>
+
 <table border cellspacing="0" cellpadding="3">
-    <tr><td colspan="2">Pricing</td></tr>
-    <tr> <td> days rented </td> <td> regularPrice() </td> </tr>
-    <tr> <td> 1 </td> <td> 1.50 </td> </tr>
-    <tr> <td> 2 </td> <td> 1.50 </td> </tr>
-    <tr> <td> 3 </td> <td> 1.50 </td> </tr>
-    <tr> <td> 4 </td> <td> 3.00 </td> </tr>
-    <tr> <td> 5 </td> <td> 4.50 </td> </tr>
+    <tr><td colspan="3">Pricing</td></tr>
+    <tr> <td> days rented </td> <td> regularPrice() </td> <td> newRelease() </td></tr>
+    <tr> <td> 1 </td> <td> 1.50 </td> <td> 2.00 </td> </tr>
+    <tr> <td> 2 </td> <td> 1.50 </td> <td> 2.00 </td> </tr>
+    <tr> <td> 3 </td> <td> 1.50 </td> <td> 3.75 </td> </tr>
+    <tr> <td> 4 </td> <td> 3.00 </td> <td> 5.50 </td> </tr>
+    <tr> <td> 5 </td> <td> 4.50 </td> <td> 7.25 </td> </tr>
 </table>
 </body>
 </html>

@@ -8,4 +8,8 @@ public class Pricing extends ColumnFixture {
   public double regularPrice() {
     return Price.REGULAR.getCharge(daysRented).getAmount();
   }
+
+  public double newRelease() {
+    return Price.NEWRELEASE.getCharge(daysRented).getAmount();
+  }
 }
