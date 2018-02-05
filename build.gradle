@@ -5,6 +5,19 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += srcDirs 'src/test/fit'
+        }
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
 repositories {
     mavenCentral()
 }
@@ -12,4 +25,5 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.13.0'
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
