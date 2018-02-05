@@ -61,10 +61,17 @@ public class VideoStore {
     return movies.get(key);
   }
 
-  public Rental addRental(int movieNumber, int daysRented) {
+  public Rental addRental(int movieNumber, int daysRented) throws UnknownMovieException {
     Movie movie = getMovie(movieNumber);
+    if (movie == null) {
+      throw new UnknownMovieException(movieNumber);
+    }
     Rental rental = new Rental(movie, daysRented);
     rentals.add(rental);
     return rental;
+  }
+
+  public int numberOfRentals() {
+    return rentals.size();
   }
 }

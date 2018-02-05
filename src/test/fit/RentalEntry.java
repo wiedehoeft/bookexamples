@@ -1,5 +1,6 @@
 import fit.ColumnFixture;
 import videostore.Rental;
+import videostore.UnknownMovieException;
 import videostore.VideoStore;
 
 public class RentalEntry extends ColumnFixture {
@@ -9,7 +10,7 @@ public class RentalEntry extends ColumnFixture {
   public int movieNumber;
   public int daysRented;
 
-  public double charge() {
+  public double charge() throws UnknownMovieException {
     Rental rental = store.addRental(movieNumber, daysRented);
     return rental.getCharge().getAmount();
   }

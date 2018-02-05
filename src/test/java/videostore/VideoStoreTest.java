@@ -36,5 +36,15 @@ public class VideoStoreTest {
 
     //Then
     assertEquals("Seven Samurai", rental.getMovieTitle());
+    assertEquals(1, videoStore.numberOfRentals());
+  }
+
+  @Test(expected = UnknownMovieException.class)
+  public void unknownMovie() throws Exception {
+
+    //When
+    videoStore.addRental(42, 7);
+
+    //Then => exception thrown
   }
 }
