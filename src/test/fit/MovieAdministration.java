@@ -1,9 +1,12 @@
 import fit.Fixture;
+import videostore.NumberSequence;
 
-public class MovieAdministration extends Fixture{
+public class MovieAdministration extends Fixture {
+  private NumberSequence sequence = new NumberSequence();
+  private int movieNumber;
 
   public void newMovie() {
-
+    movieNumber = sequence.nextNumber();
   }
 
   public void save() {
@@ -11,7 +14,7 @@ public class MovieAdministration extends Fixture{
   }
 
   public int movieNumber() {
-    return 0;
+    return movieNumber;
   }
 
   public void movieTitle(String title) {
