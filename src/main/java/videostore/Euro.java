@@ -1,9 +1,12 @@
 package videostore;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Locale;
 
 public class Euro {
+
+  private static final String CURRENCY_SYMBOL = "EUR ";
 
   private final long cents;
 
@@ -32,7 +35,7 @@ public class Euro {
 
   @Override
   public String toString() {
-    return "EUR" + getAmount();
+    return CURRENCY_SYMBOL + getAmount();
   }
 
   @Override
@@ -58,5 +61,15 @@ public class Euro {
 
   public static Euro max(Euro a, Euro b) {
     return a.cents > b.cents ? a : b;
+  }
+
+  public static Euro parse(String text) throws ParseException {
+    if (!text.startsWith(CURRENCY_SYMBOL)) {
+      throw new ParseException("no currency symbol found", 0);
+    }
+
+    String number = text.substring(CURRENCY_SYMBOL.length());
+    double amount = Double.parseDouble(number);
+    return new Euro(amount);
   }
 }
