@@ -97,4 +97,30 @@ public class VideoStore {
   public List<RentalItem> allRentalItems() {
     return new ArrayList<>(items.values());
   }
+
+  public boolean hasMovie(String title) {
+    for (Movie currentMovie : movies.values()) {
+      if (title.equalsIgnoreCase(currentMovie.getTitle())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public List<Movie> searchMovies(String searchString) {
+
+    String searchTitle = searchString.toLowerCase();
+
+    List<Movie> result = new ArrayList<>();
+
+    for (Movie movie : movies.values()) {
+      String actualTitle = movie.getTitle().toLowerCase();
+
+      if (actualTitle.indexOf(searchString) != -1) {
+        result.add(movie);
+      }
+    }
+
+    return result;
+  }
 }

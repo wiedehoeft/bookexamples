@@ -8,5 +8,7 @@ javac ExtendedActionFixture.java
 javac RentalEntry.java
 javac MovieEntry.java
 javac RentalListing.java
+javac MovieSearch.java
+javac Exactly.java
 export CLASSPATH=./fit.jar:../fit:../../../build/libs/bookexamples-1.0-SNAPSHOT.jar
 java fit.FileRunner alltests.html alltests-result.html

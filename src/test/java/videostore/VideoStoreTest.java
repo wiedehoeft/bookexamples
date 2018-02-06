@@ -5,9 +5,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 public class VideoStoreTest {
 
@@ -81,4 +79,39 @@ public class VideoStoreTest {
     assertEquals("Koyaanisqatsi", rentalItem.movieTitle);
     assertEquals(4, rentalItem.totalDaysRented);
   }
+
+  @Test
+  public void hasMovie() throws Exception {
+    // Given
+    Movie movie = videoStore.newMovie(1, "Demo", "new release");
+
+    //When
+    boolean hasMovie = videoStore.hasMovie("Demo");
+
+    //Then
+    assertTrue(hasMovie);
+  }
+
+  @Test
+  public void hasNotMovie() throws Exception {
+    // Given
+    Movie movie = videoStore.newMovie(1, "Demo", "new release");
+
+    //When
+    boolean hasMovie = videoStore.hasMovie("I am not here");
+
+    //Then
+    assertFalse(hasMovie);
+  }
+
+  @Test
+  public void movieSearching() throws Exception {
+    VideoStore store = new VideoStore();
+    store.newMovie(1, "Tiger and Dragon", "regular price");
+    store.newMovie(2, "Hero", "new release");
+    assertEquals(0, store.searchMovies("*").size());
+    assertEquals(1, store.searchMovies("tiger").size());
+    assertEquals(2, store.searchMovies("er").size());
+  }
+
 }
