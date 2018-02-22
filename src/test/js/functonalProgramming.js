@@ -147,3 +147,155 @@ function example(x) {
 }
 
 example(4);
+
+/* Function overloading */
+
+function createPerson(lastName, name) {
+    return {
+        lastName: lastName,
+        name: name
+    }
+}
+
+function createPerson(lastName, name, age) { //overrides first method declaration!
+    return {
+        lastName: lastName,
+        name: name,
+        age: age
+    }
+}
+
+console.log(createPerson("Hugo", "Egon"));
+
+var createPerson = true;
+
+// console.log(createPerson("Hugo", "Egon")); //TypeError: createPerson is not a function!!!
+
+//Always need one function, which handles different behaviour.
+//Solution 1: explicit declaration of all variables, from obligation to optional
+function sum(x, y, log) {
+    var result = x + y;
+    if (log) {
+        console.log(result);
+    }
+}
+
+sum(2, 2);
+sum(3, 3, true);
+
+//Solution 2: dont declare optional parameter
+
+function sum(x, y) {
+    var result = x + y;
+    if (arguments[2]) {
+        console.log(result);
+    }
+}
+
+sum(2, 2);
+sum(3, 3, true);
+
+//Solution 3: Optional params as config object => best practice
+
+function sum(x, y, config) {
+    var result = x + y;
+    if (config && config.log) {
+        console.log(result);
+    }
+}
+
+var config = {
+    log: true
+}
+
+sum(2, 2);
+sum(3, 3, config);
+
+/* Constructor function */
+function Album(title) {
+    this.title = title;
+}
+
+var album = new Album("Demo");
+
+
+console.log(album.constructor);
+console.log(album.title);
+
+/* Default methods for every function (call, apply, bind) */
+
+//bind() => since ES5
+var button = {
+    handler: null,
+    // Function, which expects Callback-handler
+    onClick: function (handler) {
+        this.handler = handler;
+    },
+    click: function () {
+        this.handler();
+    }
+};
+
+var handler = {
+    log: function (message) {
+        console.log("Button clicked. " + message);
+    },
+    //Object method, which is registered as callback handler
+    handle: function (message) {
+        this.log(message);
+    }
+};
+
+// Register callback handler
+// button.onClick(handler.handle); => TypeError: this.log is not a function
+button.onClick(handler.handle.bind(handler, "Called with bind")); // bind this so handler object (ExecutionContext)
+button.click();
+
+
+// Alternative
+button.onClick(function () {
+    handler.handle("Called as anonymous function");
+});
+button.click();
+
+//call() => defines execution context like bind, but creates not a function object instead function is directly called. First param is
+// execution context, second optional parameter
+function printName() {
+    console.log(arguments);
+    // arguments.forEach(function (argument) { //TypeError, arguments is not an array
+    //     console.log(argument);
+    // })
+}
+
+printName('Leo', 'Pold');
+
+// Use function borrowing
+function printName2() {
+    var forEachMethodFromGlobalArray = Array.prototype.forEach; // this is not a call
+    forEachMethodFromGlobalArray.call(arguments, function (argument) {
+        console.log(argument);
+    })
+}
+
+printName2('Max', 'Moritz');
+
+
+//apply() => like call(), but params from called functions are passed as array
+
+function printName3() {
+    Array.prototype.forEach.apply(arguments, [function (argument) {
+        console.log(argument);
+    }]);
+}
+
+printName3('Lisa', 'Luna');
+
+// Example for variadic function call with apply
+console.log(Math.max(24, 44)); // can be called with any parameter
+
+var digits = [24, 14, 44, 88];
+console.log(Math.max(digits)); // Returns NaN
+
+console.log(Math.max(digits[0], digits[1], digits[2], digits[3])); // This works, but is ugly
+
+console.log(Math.max.apply(null, digits)); //easier call with apply ()
