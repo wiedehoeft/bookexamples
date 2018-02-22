@@ -88,3 +88,62 @@ console.log(subtraction(2, 2));
 console.log(operationFabric("division")(2, 2));
 console.log(operationFabric("multiply")(2, 2));
 console.log(operationFabric('any')(2, 2));
+
+console.log("Object methods");
+
+var operations = {
+    addition: function (x, y) {
+        return x + y;
+    },
+    //in ES6
+    subtraction(x, y) {
+        return x - y;
+    }
+};
+
+console.log(operations.addition(3, 3));
+console.log(operations.subtraction(3, 2));
+
+/* This Operator */
+// this bears on object where function is executed, not where function was defined
+
+// simple 'Java' like way => this refers object person
+var person = {
+    name: "Max",
+    getName() {
+        return this.name;
+    }
+};
+
+console.log(person.getName());
+
+// more complex way
+function getNameGlobal() {
+    return this.name; //this refers global object, e.g. window
+}
+
+console.log(getNameGlobal());
+
+var person2 = {
+    name: "Lisa",
+    getName: getNameGlobal
+};
+var rockKings = {
+    name: "Kyuss",
+    getName: getNameGlobal
+};
+
+console.log(person2.getName());
+console.log(rockKings.getName());
+
+/* Hoisting example */
+function example(x) {
+    console.log(x);
+    console.log(y); //udefined instead of referenceError
+
+    if (x) {
+        var y = "4711";
+    }
+}
+
+example(4);
