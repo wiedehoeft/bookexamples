@@ -191,3 +191,143 @@ var fibonacci = fibonnaciWithCache();
 console.log(fibonacci(11));
 console.log(fibonacci(11));
 console.log(fibonacci(12));
+
+console.log("Partial results");
+
+function volume(x, y, z) {
+    return x * y * z;
+}
+
+var volumeX = 5;
+console.log(volume(volumeX, 2, 2));
+console.log(volume(volumeX, 3, 3));
+console.log(volume(volumeX, 4, 4));
+console.log(volume(volumeX, 5, 5));
+
+// Create generic function with closures
+function volumeX2(x) {
+    return function (y, z) {
+        return volume(x, y, z);
+    }
+}
+
+var volumeX5 = volumeX2(5);
+
+console.log(volumeX5(2, 2));
+console.log(volumeX5(3, 3));
+console.log(volumeX5(4, 4));
+console.log(volumeX5(5, 5));
+
+// Generic function fabric
+function volumeFabric(/* boundedParams */) {
+    var boundedParams = Array.prototype.slice.call(arguments, 0);
+    console.log(boundedParams);
+
+    return function (/* unboundedParams */) {
+        var unboundedParams = Array.prototype.slice.call(arguments, 0);
+        console.log(unboundedParams);
+        var allParams = boundedParams.concat(unboundedParams);
+        console.log(allParams);
+        return volume.apply(this, allParams);
+    }
+}
+
+var volumeX2Y4 = volumeFabric(2, 4);
+console.log(volumeX2Y4(5));
+
+// accepts any params
+function partial(funktion /*, params */) {
+    var boundedParams = Array.prototype.slice.call(arguments, 1);
+    return function () {
+        var unboundedParams = Array.prototype.slice.call(arguments, 0);
+        // for invocation from right to left change param order
+        return funktion.apply(this, boundedParams.concat(unboundedParams));
+    }
+}
+
+var volumeX10 = partial(volume, 10);
+console.log(volumeX10(2, 2));
+
+var volumeX10Y10 = partial(volume, 10, 10);
+console.log(volumeX10Y10(2));
+
+function createPerson(lastName, name) {
+    return {
+        lastName: lastName,
+        name: name
+    }
+}
+
+var createMustermann = partial(createPerson, 'Mustermann');
+var max = createMustermann('Max');
+console.log(max);
+
+var moritz = createMustermann('Moritz');
+console.log(moritz);
+
+// accepts any params in any order
+var _ = {}; //Placeholder
+
+function partialWithPlaceHolder(funktion /*, params */) {
+    var boundedParams = Array.prototype.slice.call(arguments, 1);
+    return function () {
+        var i,
+            params = [],
+            unboundedParams = Array.prototype.slice.call(arguments, 0);
+        for (i = 0; i < boundedParams.length; i++) {
+            if (boundedParams[i] !== _) {
+                params[i] = boundedParams[i];
+            } else {
+                params[i] = unboundedParams.shift();
+            }
+        }
+        return funktion.apply(this, params.concat(unboundedParams));
+    }
+}
+
+var volumeY5 = partialWithPlaceHolder(volume, _, 5);
+console.log(volumeY5(2, 2));
+console.log(volumeY5(3, 3));
+console.log(volumeY5(4, 4));
+console.log(volumeY5(5, 5));
+
+/* Currying => create one function with one parameter from function with many params */
+function volumeCurry(x) {
+    return function (y) {
+        return function (z) {
+            return x * y * z;
+        }
+    }
+}
+
+console.log(volumeCurry(5)(5)(5));
+
+// Generic currying
+console.log("Generic currying");
+
+function curry(firstParam) {
+    var n,
+        funktion,
+        boundedParams = Array.prototype.slice.call(arguments, 1);
+    if (typeof firstParam === "function") {
+        funktion = firstParam;
+        n = firstParam.length;
+    } else {
+        funktion = boundedParams.shift();
+        n = firstParam;
+    }
+    return function () {
+        var unboundedParams = Array.prototype.slice.call(arguments);
+        var params = boundedParams.concat(unboundedParams);
+        return params.length < n ? curry.apply(this, [n, funktion].concat(params)) : funktion.apply(this, params);
+    }
+}
+
+var volumeCurry = curry(volume);
+console.log(volumeCurry(5)(5)(5));
+
+var volumeX = volumeCurry(5);
+console.log(volumeX(2, 2));
+console.log(volumeX(3, 3));
+console.log(volumeX(4, 4));
+console.log(volumeX(5, 5));
