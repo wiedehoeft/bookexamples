@@ -39,6 +39,7 @@ console.log(album.title);
 
 // Call with 'new' adds implicit return to constructor function, otherwise album would be undefined. This can
 // raise critical errors because this refers global context, when function is not called with new (and would overwrite this global property!!!)
+
 // Album with fallback to avoid global properties overriding
 function Album2(title) {
     if (!(this instanceof Album2)) {
